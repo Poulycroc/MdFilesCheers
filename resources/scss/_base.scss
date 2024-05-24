@@ -1,0 +1,21 @@
+*.cursor- {
+    &pointer {
+        cursor: pointer;
+    }
+
+    &progress {
+        cursor: progress;
+    }
+}
+
+*[class*="arrow-right"] {
+    @include trs(transform);
+
+    &.is-openned {
+        transform: rotate(90deg);
+    }
+}
+
+.no-pointers-event {
+    pointer-events: none !important;
+}
