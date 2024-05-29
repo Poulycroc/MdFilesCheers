@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    protected $groupable_models = [File::class];
+
     /**
      * The attributes that are mass assignable.
      *

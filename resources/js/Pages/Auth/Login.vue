@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import GuestLayout from '@/Layouts/GuestLayout.vue';
+import { watch } from 'vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import GuestLayout from '@/Layouts/GuestLayout.vue';
 
 defineProps<{
     canResetPassword?: boolean;
     status?: string;
+    errors?: object;
 }>();
 
 const loginFormPayload = useForm({
@@ -18,6 +20,11 @@ const onSubmit = () => {
         onFinish: () => loginFormPayload.reset('password'),
     });
 };
+
+
+watch(status, async (change) => {
+    console.log({ change });
+});
 </script>
 
 <template lang="pug">
@@ -26,6 +33,14 @@ GuestLayout
         div(v-if="status") {{ status }}
 
     el-card.login-container-card
+        .clearfix.full.push_b_10(v-if="errors")
+            el-alert(
+                title="Error"
+                type="error"
+                :closable="false"
+                :description="errors.email ? errors.email : 'Invalid credentials'"
+            )
+
         el-form(
             ref="loginForm"
             label-position="top"

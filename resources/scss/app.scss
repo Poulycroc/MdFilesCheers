@@ -6,6 +6,10 @@
 @import '@poulycroc/sass-tools/tools/rfs';
 @import '@poulycroc/sass-tools/tools/functions';
 
+@import './config/reset';
+@import './config/sizes';
+@import './config/grid';
+
 @import './base';
 @import './mod';
 

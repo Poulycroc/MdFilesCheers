@@ -106,52 +106,6 @@ img.img-contain {
     }
 }
 
-.el-aside {
-    min-height: 100vh;
-    background-color: color(w);
-
-    .brand-logo-container {
-        border-right: solid 1px color(border);
-        @include size(f, 80px);
-        padding: s(padding);
-
-        figure {
-            padding: 0;
-            margin: 0;
-
-            img {
-                display: block;
-                width: 100%;
-            }
-        }
-    }
-
-    &>ul {
-        height: 100%;
-    }
-}
-
-.el-container.content-view {
-    &>.el- {
-
-        &header,
-        &main {
-            @include clearfix;
-        }
-
-        &header {
-            @include size(calc(100% - 300px), s(navH));
-            border-bottom: solid 1px color(border);
-            @include pos(f, 0, 0, auto, 300px);
-        }
-
-        &main {
-            @include size(f, auto);
-            padding-top: s(navH);
-        }
-    }
-}
-
 .content_ {
     &to_ {
         &end {
@@ -478,52 +432,6 @@ img.img-contain {
 
     &.big {
         @include size(32px);
-    }
-}
-
-.el-aside {
-    min-height: 100vh;
-    background-color: color(w);
-
-    .brand-logo-container {
-        border-right: solid 1px color(border);
-        @include size(f, 80px);
-        padding: s(padding);
-
-        figure {
-            padding: 0;
-            margin: 0;
-
-            img {
-                display: block;
-                width: 100%;
-            }
-        }
-    }
-
-    &>ul {
-        height: 100%;
-    }
-}
-
-.el-container.content-view {
-    &>.el- {
-
-        &header,
-        &main {
-            @include clearfix;
-        }
-
-        &header {
-            @include size(calc(100% - 300px), s(navH));
-            border-bottom: solid 1px color(border);
-            @include pos(f, 0, 0, auto, 300px);
-        }
-
-        &main {
-            @include size(f, auto);
-            padding-top: s(navH);
-        }
     }
 }
 
