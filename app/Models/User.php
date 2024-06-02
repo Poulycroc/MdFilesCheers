@@ -6,10 +6,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use LemonSqueezy\Laravel\Billable;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    use Billable;
 
     protected $groupable_models = [File::class];
 
