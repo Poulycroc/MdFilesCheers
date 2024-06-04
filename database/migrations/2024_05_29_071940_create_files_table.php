@@ -13,13 +13,20 @@ return new class extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->uuid('id');
-            $table->foreignId('author_id');
+
+            $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
 
             $table->string('name');
             $table->string('size');
 
             $table->tinyInteger('visibility')->default(0); // 0 = Private, 1 = Public.
             $table->smallInteger('status')->default(5); // 5 = Draft State upon creation.
+
+            $table->uuid('folder_id')->nullable();
+            $table->uuid('project_id')->nullable();
+
+            $table->longText('content');
+            $table->string('encrypted_passcode')->nullable();
 
             $table->timestamps();
         });
