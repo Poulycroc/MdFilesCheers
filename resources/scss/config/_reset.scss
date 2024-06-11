@@ -1,8 +1,13 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v5.0.2 | 20191019
    License: none (public domain)
 */
-
 html,
 body,
 div,

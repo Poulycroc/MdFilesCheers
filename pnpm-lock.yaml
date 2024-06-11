@@ -5,12 +5,21 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@element-plus/icons-vue':
+    specifier: ^2.3.1
+    version: 2.3.1(vue@3.4.27)
   '@poulycroc/sass-tools':
     specifier: https://github.com/Poulycroc/sass-tools.git
     version: github.com/Poulycroc/sass-tools/c8ab5b7a0f9bbf2f9202e867a57231a82d761ce4
   element-plus:
     specifier: ^2.7.3
     version: 2.7.3(vue@3.4.27)
+  split-pane-v3:
+    specifier: ^1.1.2
+    version: 1.1.2(typescript@5.4.5)
+  vue-router:
+    specifier: ^4.3.3
+    version: 4.3.3(vue@3.4.27)
 
 devDependencies:
   '@inertiajs/vue3':
@@ -561,6 +570,10 @@ packages:
     dependencies:
       '@vue/compiler-dom': 3.4.27
       '@vue/shared': 3.4.27
+
+  /@vue/devtools-api@6.6.3:
+    resolution: {integrity: sha512-0MiMsFma/HqA6g3KLKn+AGpL1kgKhFWszC9U29NfpWK5LE7bjeXxySWJrOJ77hBz+TBrBQ7o4QJqbPbqbs8rJw==}
+    dev: false
 
   /@vue/language-core@1.8.27(typescript@5.4.5):
     resolution: {integrity: sha512-L8Kc27VdQserNaCUNiSFdDl9LWT24ly8Hpwf1ECy3aFb9m6bDhBGQYOujDm21N7EW3moKIOKEanQwe1q5BK+mA==}
@@ -1469,6 +1482,14 @@ packages:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
     engines: {node: '>=0.10.0'}
 
+  /split-pane-v3@1.1.2(typescript@5.4.5):
+    resolution: {integrity: sha512-ZwJRLI3wQwfwLZOADfy09B7ycAo0qg4APuaWHtCABOWyrHxm8iWHjalfqZe0k2ySvxIVHoFSVm+XfIBfSWY98Q==}
+    dependencies:
+      vue: 3.4.27(typescript@5.4.5)
+    transitivePeerDependencies:
+      - typescript
+    dev: false
+
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
@@ -1565,6 +1586,15 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
+      vue: 3.4.27(typescript@5.4.5)
+    dev: false
+
+  /vue-router@4.3.3(vue@3.4.27):
+    resolution: {integrity: sha512-8Q+u+WP4N2SXY38FDcF2H1dUEbYVHVPtPCPZj/GTZx8RCbiB8AtJP9+YIxn4Vs0svMTNQcLIzka4GH7Utkx9xQ==}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      '@vue/devtools-api': 6.6.3
       vue: 3.4.27(typescript@5.4.5)
     dev: false
 

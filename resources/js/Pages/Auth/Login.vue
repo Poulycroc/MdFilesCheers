@@ -20,27 +20,14 @@ const onSubmit = () => {
         onFinish: () => loginFormPayload.reset('password'),
     });
 };
-
-
-watch(status, async (change) => {
-    console.log({ change });
-});
 </script>
 
 <template lang="pug">
-GuestLayout
+guest-layout(content-centered)
     Head
         div(v-if="status") {{ status }}
 
     el-card.login-container-card
-        .clearfix.full.push_b_10(v-if="errors")
-            el-alert(
-                title="Error"
-                type="error"
-                :closable="false"
-                :description="errors.email ? errors.email : 'Invalid credentials'"
-            )
-
         el-form(
             ref="loginForm"
             label-position="top"
@@ -52,12 +39,11 @@ GuestLayout
             el-form-item(label="Password" prop="password")
                 el-input(v-model="loginFormPayload.password" type="password")
 
-            el-form-item(label="Remember Me")
-                el-checkbox(v-model="loginFormPayload.remember")
+            el-checkbox(v-model="loginFormPayload.remember" label="Remember me")
 
             .clearfix.full
-                el-button(type="primary" @click="onSubmit") Login
-            .clearfix.full
+                el-button.full.push_t_10(type="primary" @click="onSubmit") Login
+            .clearfix.full.pull_end.push_t_10
                 el-link(
                     v-if="canResetPassword"
                     :href="route('password.request')"

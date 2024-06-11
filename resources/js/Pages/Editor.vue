@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import AsideFilesNavigation from '@/Components/AsideFilesNavigation.vue';
+
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import MainEditorViewer from '@/Modules/EditorModule/components/MainEditorViewer.vue';
+
+const props = defineProps<{
+    allFilesTree?: object[];
+    file?: object;
+    path?: string;
+}>();
 </script>
 
 <template lang="pug">
 head(title="Editor")
 
 authenticated-layout
-    el-container
-        AsideFilesNavigation
-        el-container
-            el-header
-            el-main
-                el-button(type="primary") You're test test test
+    main-editor-viewer(
+        :all-files-tree="allFilesTree"
+        :file="file"
+        :path="path"
+    )
 </template>

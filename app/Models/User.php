@@ -15,6 +15,9 @@ class User extends Authenticatable
 
     protected $groupable_models = [File::class];
 
+    const ROLE_CREATOR = 'creator';
+    const ROLE_ADMIN = 'admin';
+
     /**
      * The attributes that are mass assignable.
      *

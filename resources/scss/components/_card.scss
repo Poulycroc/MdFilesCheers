@@ -1,6 +1,6 @@
 .el-card {
     &.login-container-card {
-        max-width: 400px;
+        @include size(400px, auto);
         margin: 0 auto;
     }
 }

@@ -8,9 +8,18 @@
 
 @import './config/reset';
 @import './config/sizes';
+@import './config/colors';
 @import './config/grid';
+
+@import './custom/typo';
 
 @import './base';
 @import './mod';
 
 @import './components/card';
+@import './components/split-pane-v3';
+
+// editor
+@import './components/editor/main-viewer';
+@import './components/editor/top-header';
+@import './components/editor/tree-viewer';

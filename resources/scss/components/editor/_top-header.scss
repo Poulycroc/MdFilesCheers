@@ -1,0 +1,5 @@
+.top-header--editor--component-wrapper {
+    @include clearfix;
+    @include size(f, 40px);
+    border-bottom: 1px solid color(border);
+}

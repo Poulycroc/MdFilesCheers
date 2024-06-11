@@ -1,0 +1,15 @@
+.tree-header--editor--component-wrapper,
+.tree-viewer-header--editor--component-wrapper {
+    @include clearfix;
+}
+
+.tree-header--editor--component-wrapper {
+    @include size(f, 40px);
+    border-bottom: 1px solid color(border);
+}
+
+.tree-viewer-header--editor--component-wrapper {
+    @include size(f, calc(100vh - 40px));
+    overflow-x: scroll;
+    min-width: 400px;
+}

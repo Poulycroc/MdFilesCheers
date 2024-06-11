@@ -12,6 +12,9 @@ class File extends Model
     use HasFactory;
     use IsGroupable;
 
+    const VISIBILITY_PRIVATE = 0;
+    const VISIBILITY_PUBLIC = 1;
+
     protected $table = 'files';
     protected $fillable = [
         'name',
@@ -22,10 +25,20 @@ class File extends Model
         'status',
         'visibility',
         'encrypted_passcode',
+        'folder_id',
+        'project_id',
     ];
 
     protected $groupable_models = [
         User::class,
+    ];
+
+    /**
+     * @return array Adventure visibility enums
+     */
+    public static $visibilityEnums = [
+        self::VISIBILITY_PRIVATE => 0,
+        self::VISIBILITY_PUBLIC => 1,
     ];
 
     /**
@@ -57,5 +70,60 @@ class File extends Model
     public function project()
     {
         return $this->belongsTo(Project::class);
+    }
+
+
+    /**
+     * Generate the full path for the file.
+     *
+     * @return string
+     */
+    public function getPathAttribute()
+    {
+        $path = $this->name;
+        if ($this->folder) {
+            $path = $this->folder->getPathAttribute() . '/' . $path;
+        }
+        if ($this->project) {
+            $path = $this->project->name . '/' . $path;
+        }
+        return $path;
+    }
+
+    /**
+     * Find a file by its path.
+     *
+     * @param string $path
+     * @return File|null
+     */
+    public static function findByPath($path)
+    {
+        $segments = explode('/', $path);
+        $fileName = array_pop($segments);
+        $query = self::where('name', $fileName);
+
+        // Traverse through projects and folders based on segments
+        $project = null;
+        $folder = null;
+        foreach ($segments as $segment) {
+            if (!$project) {
+                $project = Project::where('name', $segment)->first();
+                if ($project) {
+                    $query->where('project_id', $project->id);
+                }
+            } elseif (!$folder) {
+                $folder = Folder::where('name', $segment)->where('project_id', $project->id)->first();
+                if ($folder) {
+                    $query->where('folder_id', $folder->id);
+                }
+            } else {
+                $folder = Folder::where('name', $segment)->where('parent_id', $folder->id)->first();
+                if ($folder) {
+                    $query->where('folder_id', $folder->id);
+                }
+            }
+        }
+
+        return $query->first();
     }
 }

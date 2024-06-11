@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\File;
 
 return new class extends Migration
 {
@@ -19,7 +20,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('size');
 
-            $table->tinyInteger('visibility')->default(0); // 0 = Private, 1 = Public.
+            $table
+                ->tinyInteger('visibility')
+                ->default(File::VISIBILITY_PRIVATE);
+
             $table->smallInteger('status')->default(5); // 5 = Draft State upon creation.
 
             $table->uuid('folder_id')->nullable();
