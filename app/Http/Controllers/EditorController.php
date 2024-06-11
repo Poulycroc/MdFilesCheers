@@ -44,8 +44,7 @@ class EditorController extends Controller
 
     public function storeFile(Request $request)
     {
-        dd($request->all());
-        $file = $this->fileRepository::store($request->all());
+        $file = $this->fileRepository->store($request->all());
 
         return redirect()->route('editor.show', $file->path);
     }

@@ -29,4 +29,12 @@ trait OwnerSetter
         $model->creator_id = $user->id;
         return $model->save();
     }
+
+    public static function setAuthor($model, User $userModel = null): bool
+    {
+        $user = $userModel ?? Auth::user();
+
+        $model->author_id = $user->id;
+        return $model->save();
+    }
 }

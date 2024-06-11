@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use Illuminate\Support\Str;
 use App\Repositories\Setters\OwnerSetter;
+use App\Repositories\Setters\StatusSetter;
 use App\Traits\ContentPublishing\Status as PublishStatus;
 use App\Models\File;
 
@@ -12,6 +14,7 @@ use App\Models\File;
 class FileRepository extends File
 {
     use OwnerSetter;
+    use StatusSetter;
 
     private $file;
     private $publishStatus;
@@ -29,7 +32,10 @@ class FileRepository extends File
 
     public function store(array $data): File
     {
-        $file = new $this->file();
+        $file = new File();
+
+        $file->id = Str::uuid();
+
         $file->name = $data['name'] ?? 'Untitled';
         $file->size = $data['size'] ?? 0;
         $file->content = $data['content'] ?? '# Hello World';
@@ -39,12 +45,12 @@ class FileRepository extends File
         $file->folder_id = $data['folder_id'] ?? null;
         $file->project_id = $data['project_id'] ?? null;
 
-        if (!$file->save()) {
-            throw new \Exception('Failed to save file');
+        if (!self::setAuthor($file)) {
+            throw new \Exception('Failed to set creator');
         }
 
-        if (!self::setCreator($file)) {
-            throw new \Exception('Failed to set creator');
+        if (!$file->save()) {
+            throw new \Exception('Failed to save file');
         }
 
         self::setDraftedStatus($file);

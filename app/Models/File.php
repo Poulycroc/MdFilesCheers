@@ -102,9 +102,9 @@ class File extends Model
         $fileName = array_pop($segments);
         $query = self::where('name', $fileName);
 
-        // Traverse through projects and folders based on segments
         $project = null;
         $folder = null;
+
         foreach ($segments as $segment) {
             if (!$project) {
                 $project = Project::where('name', $segment)->first();
