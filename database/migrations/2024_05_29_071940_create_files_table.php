@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('files', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
 
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
 

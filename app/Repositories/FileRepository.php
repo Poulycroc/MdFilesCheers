@@ -62,4 +62,17 @@ class FileRepository extends File
 
         return $file;
     }
+
+
+    public function updateContent(string $fileId, string $content): File
+    {
+        $file = $this->find($fileId);
+        $file->content = $content;
+
+        if (!$file->save()) {
+            throw new \Exception('Failed to save file');
+        }
+
+        return $file;
+    }
 }

@@ -15,6 +15,8 @@ class File extends Model
     const VISIBILITY_PRIVATE = 0;
     const VISIBILITY_PUBLIC = 1;
 
+    public $incrementing = false;
+    protected $keyType = 'string';
     protected $table = 'files';
     protected $fillable = [
         'name',

@@ -34,6 +34,7 @@
         "codemirror": "^6.0.1",
         "element-plus": "^2.7.3",
         "highlight.js": "^11.9.0",
+        "lodash": "^4.17.21",
         "marked": "^12.0.2",
         "split-pane-v3": "^1.1.2",
         "vue-codemirror6": "^1.3.2",

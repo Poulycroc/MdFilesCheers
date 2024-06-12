@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-
 use App\Repositories\FileRepository;
-
 use App\Http\Resources\FileResource;
 
 class EditorController extends Controller

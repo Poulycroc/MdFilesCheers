@@ -20,7 +20,7 @@ class FileResource extends JsonResource
         $file = $this->resource;
 
         return (array) [
-            'id' => $file->id,
+            'id' => (string) $file->id,
             'name' => (string) $file->name,
             'size' => $file->size,
             'content' => $file->content,
