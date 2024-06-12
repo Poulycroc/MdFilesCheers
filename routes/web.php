@@ -25,8 +25,9 @@ Route::middleware('auth')->group(function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('editor/{path}', [EditorController::class, 'show'])
-        ->where('path', '.*')
+    // Route::get('editor/{path}', [EditorController::class, 'show'])
+    Route::get('editor/{fileId}', [EditorController::class, 'show'])
+        // ->where('path', '.*')
         ->name('editor.show');
 
     Route::post('storefile', [EditorController::class, 'storeFile'])

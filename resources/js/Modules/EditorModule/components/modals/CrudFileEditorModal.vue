@@ -23,7 +23,7 @@ el-dialog.crud-file--modal--editor--component-wrapper(
 </template>
 
 <script lang="ts" setup>
-import { ref, defineEmits, computed, reactive } from "vue";
+import { ref, computed, reactive } from "vue";
 import { useForm } from '@inertiajs/vue3';
 import type { ComponentSize, FormInstance, FormRules } from 'element-plus'
 

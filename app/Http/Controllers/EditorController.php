@@ -7,6 +7,8 @@ use Inertia\Inertia;
 
 use App\Repositories\FileRepository;
 
+use App\Http\Resources\FileResource;
+
 class EditorController extends Controller
 {
     private $fileRepository;
@@ -26,18 +28,20 @@ class EditorController extends Controller
     /**
      * Show the editor view for a file.
      *
-     * @param string $path
+     * @param string $fileId
      * @return \Inertia\Response
      */
-    public function show(string $path)
+    public function show(string $fileId)
     {
         $allFilesTree = $this->fileRepository::all();
-        $file = $this->fileRepository::findByPath($path);
+
+        $file = $this->fileRepository->find($fileId);
+        $fileResource = FileResource::make($file);
 
         return Inertia::render('Editor', [
             'allFilesTree' => $allFilesTree,
-            'file' => $file,
-            'path' => $path,
+            'file' => $fileResource,
+            'path' => $fileResource->path,
         ]);
     }
 

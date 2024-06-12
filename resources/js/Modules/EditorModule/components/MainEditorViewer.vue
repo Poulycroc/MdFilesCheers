@@ -5,7 +5,7 @@
             tree-viewer-header
             tree-viewer(:all-files-tree="allFilesTree")
         template(v-slot:paneR)
-            top-header
+            top-header(:file="file" :path="path")
 
             main.editor-main-container.full.full_h
                 split-pane(
@@ -13,7 +13,8 @@
                     :min-percent="0"
                     :default-percent="isMarkdownPrettyViewerOpen ? 50 : 100"
                 )
-                    template(v-slot:paneL) vertical-B
+                    template(v-slot:paneL)
+                        markdown-editor(:file="file" :path="path")
                     template(
                         v-if="isMarkdownPrettyViewerOpen"
                         v-slot:paneR)
@@ -24,6 +25,7 @@ import { ref, defineAsyncComponent } from "vue";
 import TopHeader from '@/Modules/EditorModule/components/TopHeader.vue';
 import TreeViewerHeader from '@/Modules/EditorModule/components/TreeViewerHeader.vue';
 import TreeViewer from '@/Modules/EditorModule/components/TreeViewer.vue';
+import MarkdownEditor from '@/Modules/EditorModule/components/MarkdownEditor.vue';
 
 const SplitPane = defineAsyncComponent(() => import("split-pane-v3"));
 

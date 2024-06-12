@@ -6,7 +6,7 @@
             placeholder="Filter keyword"
         )
 
-    .full.clearfix.pad_l_10.pad_r_10.pad_t_20(v-if="!allFilesTree.length")
+    .full.clearfix.pad_l_10.pad_r_10.pad_t_20(v-if="allFilesTree.length === 0")
         el-button.full(
             type="primary"
             @click="handleAddFile"
@@ -21,7 +21,7 @@
         default-expand-all
         :allow-drop="allowDrop"
         :allow-drag="allowDrag"
-        :data="data"
+        :data="allFilesTreeMap"
         :filter-node-method="filterNode"
         @node-drag-start="handleDragStart"
         @node-drag-enter="handleDragEnter"
@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 import type Node from 'element-plus/es/components/tree/src/model/node'
 import type { DragEvents } from 'element-plus/es/components/tree/src/model/useDragNode'
@@ -51,66 +51,8 @@ interface Tree {
   [key: string]: any
 }
 
-const data = [
-  {
-    label: 'Level one 1',
-    children: [
-      {
-        label: 'Level two 1-1',
-        children: [
-          {
-            label: 'Level three 1-1-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Level one 2',
-    children: [
-      {
-        label: 'Level two 2-1',
-        children: [
-          {
-            label: 'Level three 2-1-1',
-          },
-        ],
-      },
-      {
-        label: 'Level two 2-2',
-        children: [
-          {
-            label: 'Level three 2-2-1',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    label: 'Level one 3',
-    children: [
-      {
-        label: 'Level two 3-1',
-        children: [
-          {
-            label: 'Level three 3-1-1',
-          },
-        ],
-      },
-      {
-        label: 'Level two 3-2',
-        children: [
-          {
-            label: 'Level three 3-2-1',
-          },
-        ],
-      },
-    ],
-  },
-]
-
 // props
-defineProps({
+const props = defineProps({
     allFilesTree: {
         type: Array as PropType<object[]>,
         required: true,
@@ -122,6 +64,13 @@ const filterText = ref<string>('')
 const isCrudFileModalVisible = ref<boolean>(false);
 
 // computed
+const allFilesTreeMap = computed((): array => {
+    return props.allFilesTree.map((item: object): array => ({
+        label<string>: item.name || 'Unnamed',
+        children<array,any>: item.children || [],
+    }))
+})
+
 const allowDrop = (draggingNode: Node, dropNode: Node, type: AllowDropType): boolean => {
     return dropNode.data.label === 'Level two 3-1'
         ? type !== 'inner'

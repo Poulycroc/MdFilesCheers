@@ -30,9 +30,14 @@ class FileRepository extends File
         $this->publishStatus = new PublishStatus();
     }
 
+    public function find($id): File
+    {
+        return $this->file::findOrFail($id);
+    }
+
     public function store(array $data): File
     {
-        $file = new File();
+        $file = new $this->file();
 
         $file->id = Str::uuid();
 
